@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 function UserList() {
   const [users, setUsers] = useState([]);
 
-  // Obtener usuarios
   const getUsers = async () => {
     try {
       const res = await axios.get("http://localhost:5001/api/usuarios");
@@ -15,17 +14,15 @@ function UserList() {
     }
   };
 
-  // Cargar lista al montar el componente
   useEffect(() => {
     getUsers();
   }, []);
 
-  // Eliminar usuario
   const deleteUser = async (id) => {
     if (window.confirm("¿Seguro que deseas eliminar este usuario?")) {
       try {
         await axios.delete(`http://localhost:5001/api/usuarios/${id}`);
-        getUsers(); // refrescar la lista
+        getUsers();
       } catch (error) {
         console.error("Error al eliminar el usuario:", error);
       }
@@ -33,18 +30,15 @@ function UserList() {
   };
 
   return (
-    <div className="list-container">
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "15px" }}>
-        <h2>Lista de Usuarios</h2>
-        <Link to="/create">
-          <button style={{ backgroundColor: "#007bff", color: "white", padding: "8px 15px", border: "none", borderRadius: "5px" }}>
-            Nuevo Usuario
-          </button>
-        </Link>
-      </div>
+    <div className="container">
+      <h2>Lista de Usuarios</h2>
 
-      <table border="1" cellPadding="8" width="100%">
-        <thead style={{ backgroundColor: "#007bff", color: "white" }}>
+      <Link to="/create">
+        <button>Nuevo Usuario</button>
+      </Link>
+
+      <table>
+        <thead>
           <tr>
             <th>ID</th>
             <th>Nombre</th>
@@ -53,6 +47,7 @@ function UserList() {
             <th>Acciones</th>
           </tr>
         </thead>
+
         <tbody>
           {users.length > 0 ? (
             users.map((u) => (
@@ -63,30 +58,12 @@ function UserList() {
                 <td>{u.telefono}</td>
                 <td>
                   <Link to={`/edit/${u.id}`}>
-                    <button
-                      style={{
-                        marginRight: "5px",
-                        backgroundColor: "#28a745",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "5px",
-                        padding: "5px 10px",
-                        cursor: "pointer",
-                      }}
-                    >
-                      Editar
-                    </button>
+                    <button className="btn-edit">Editar</button>
                   </Link>
+
                   <button
+                    className="btn-delete"
                     onClick={() => deleteUser(u.id)}
-                    style={{
-                      backgroundColor: "#dc3545",
-                      color: "white",
-                      border: "none",
-                      borderRadius: "5px",
-                      padding: "5px 10px",
-                      cursor: "pointer",
-                    }}
                   >
                     Eliminar
                   </button>
@@ -95,7 +72,7 @@ function UserList() {
             ))
           ) : (
             <tr>
-              <td colSpan="5" style={{ textAlign: "center", padding: "10px" }}>
+              <td colSpan="5" style={{ textAlign: "center" }}>
                 No hay usuarios registrados.
               </td>
             </tr>

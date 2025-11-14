@@ -1,10 +1,9 @@
-const API = "http://localhost:3000/api/usuarios";
-
-export const login = async (usuario, password) => {
-    const res = await fetch(`${API}/login`, {
+export async function login(email, password) {
+    const res = await fetch("http://localhost:5001/api/auth/login", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ usuario, password })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
     });
-    return res.json();
-};
+
+    return await res.json();
+}
