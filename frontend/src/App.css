@@ -5,21 +5,20 @@ body {
   background: #f2f2f2;
 }
 
-/* Contenedor simple */
+
 .container {
   width: 90%;
   max-width: 400px;
   margin: 40px auto;
 }
 
-/* Titulo */
+
 h1, h2 {
   text-align: center;
   color: #333;
   margin-bottom: 20px;
 }
 
-/* Inputs */
 input {
   width: 100%;
   padding: 10px;
@@ -29,7 +28,6 @@ input {
   border-radius: 4px;
 }
 
-/* Botón */
 button {
   width: 100%;
   padding: 10px;
@@ -45,7 +43,6 @@ button:hover {
   background: #125a9c;
 }
 
-/* Tabla simple */
 table {
   width: 100%;
   background: white;
@@ -64,7 +61,6 @@ th {
   color: white;
 }
 
-/* Botones de editar/eliminar */
 .btn-edit {
   background: #4caf50;
   color: white;
