@@ -1,14 +1,14 @@
-const express = require("express");
-const cors = require("cors");
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoginPage from "./pages.js/LoginPage";
+import UserList from "./components/UserList";
 
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-
-app.use("/api/auth", require("./routes/auth"));
-app.use("/api/usuarios", require("./routes/usuarios"));
-
-app.listen(3000, () => console.log("Servidor en puerto 3000"));
-
-module.exports = app;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/usuarios" element={<UserList />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
