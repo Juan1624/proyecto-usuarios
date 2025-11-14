@@ -12,11 +12,10 @@ function UserForm() {
     telefono: "",
   });
 
-  // Manejar cambios en los inputs
+
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  // Obtener datos del usuario al editar
   const getUser = async () => {
     try {
       const res = await axios.get(`http://localhost:5001/api/usuarios/${id}`);
@@ -30,12 +29,10 @@ function UserForm() {
     }
   };
 
-  // Cargar usuario si estamos en modo edición
   useEffect(() => {
     if (id) getUser();
   }, [id]);
 
-  // Guardar o actualizar usuario
   const handleSubmit = async (e) => {
     e.preventDefault();
 
