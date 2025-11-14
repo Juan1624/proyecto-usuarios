@@ -5,7 +5,7 @@ const db = require("../config/database");
 router.post("/login", (req, res) => {
     const { email, password } = req.body;
 
-    const sql = "SELECT * FROM usuarios WHERE email = ? AND password = ?";
+    const sql = "SELECT * FROM usuarios_app WHERE email = ? AND password = ?";
 
     db.query(sql, [email, password], (err, result) => {
         if (err) {

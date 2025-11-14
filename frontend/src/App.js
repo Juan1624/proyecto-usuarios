@@ -9,6 +9,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/usuarios" element={<UserList />} />
+        <Route path="/edit/:id" element={<UserList />} />
       </Routes>
     </BrowserRouter>
   );
