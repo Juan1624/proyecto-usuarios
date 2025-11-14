@@ -1,14 +1,15 @@
-import React from 'react';
-import UserList from './components/UserList';
+const express = require("express");
+const cors = require("cors");
 
-function App() {
-return (
-<div>
-<h1>React + MySQL Example</h1>
+const app = express();
 
-<UserList />
-</div>
-);
-}
+app.use(cors());
+app.use(express.json());
 
-export default App;
+// Rutas
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/usuarios", require("./routes/usuarios"));
+
+app.listen(3000, () => console.log("Servidor en puerto 3000"));
+
+module.exports = app;

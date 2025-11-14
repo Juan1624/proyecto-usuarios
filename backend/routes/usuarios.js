@@ -1,20 +1,25 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const db = require('../config/database');
+const db = require("../config/database");
 
-router.get('/', (req, res) => {
-const query = 'SELECT * FROM usuarios ORDER BY id DESC';
+router.get("/", (req, res) => {
+    db.query("SELECT * FROM usuarios", (err, result) => {
+        if (err) return res.json({ error: err });
+        res.json(result);
+    });
+});
 
-db.query(query, (err, results) => {
-if (err) {
-console.error('Error al obtener usuarios:', err);
-return res.status(500).json({
-error: 'Error al obtener usuarios',
-details: err.message
-});
-}
-res.json(results);
-});
+router.post("/", (req, res) => {
+    const { usuario, password } = req.body;
+
+    db.query(
+        "INSERT INTO usuarios (usuario, password) VALUES (?,?)",
+        [usuario, password],
+        (err) => {
+            if (err) return res.json({ error: err });
+            res.json({ status: "ok" });
+        }
+    );
 });
 
 module.exports = router;
